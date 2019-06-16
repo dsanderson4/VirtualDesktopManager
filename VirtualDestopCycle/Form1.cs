@@ -73,6 +73,12 @@ namespace VirtualDesktopManager
             var index = (int) e.HotKey.Key - (int)Key.D0 - 1;
             var currentDesktopIndex = getCurrentDesktopIndex();
 
+            if (index == -1)
+            {
+                // '0' for desktop 10.
+                index = 9;
+            }
+
             if (index == currentDesktopIndex)
             {
                 return;
@@ -184,6 +190,7 @@ namespace VirtualDesktopManager
 
         private void RegisterNumberHotkeys(ModifierKeys modifiers)
         {
+            _numberHotkey.Register(Key.D0, modifiers);
             _numberHotkey.Register(Key.D1, modifiers);
             _numberHotkey.Register(Key.D2, modifiers);
             _numberHotkey.Register(Key.D3, modifiers);
